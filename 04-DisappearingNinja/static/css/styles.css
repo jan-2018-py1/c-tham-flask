@@ -1,0 +1,15 @@
+/* * {
+    outline: 1px dotted red;
+} */
+#container {
+    width: 600px;
+    margin: 0px auto;
+}
+img {
+    width: 100%;
+    background-color: white;
+    margin: 0px auto;
+}
+p {
+    margin: 1px;
+}
