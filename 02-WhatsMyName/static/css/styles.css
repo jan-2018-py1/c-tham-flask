@@ -1,0 +1,19 @@
+* {
+    width: 900px;
+    margin: 5px auto;
+}
+h1 {
+    color: red;
+}
+h2 {
+    color: blue;
+}
+h3 {
+    color: navy;
+}
+p {
+    color: orange;
+}
+img {
+    width: 200px;
+}
