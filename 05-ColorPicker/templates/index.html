@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Color Picker</title>
+    <style>
+        * {
+            /* outline: 1px dotted red; */
+            /* background-color:rgb(255,255,255); */
+            background-color:rgb({{ xred }}, {{ xgreen }}, {{ xblue }});
+        }
+        #container {
+            width: 450px;
+            height: 350px;
+            margin: 0px auto;
+            border-radius: 5px;
+            /* background-color:rgb(255,255,255); */
+            background-color:rgb({{ xred }}, {{ xgreen }}, {{ xblue }});
+            padding: 20px;
+            text-align: center;
+        }
+        .row {
+            width: 75%;
+            display: inline-block;
+            margin: 0px;
+            padding: 0px;
+        }
+        .col-left {
+            width: 25%;
+            margin-top: 6px;
+            display: inline-block;
+        }
+        .col-right {
+            width: 70%;
+            margin-top: 6px;
+            display: inline-block;
+        }
+        h3 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <h1>Enter your color value below:</h1>
+        </div>
+        <div id="body">
+            <form action='' method='post'>
+                <div class="row">
+                    <div class="col-left">
+                        <p>Red:</p>
+                    </div>
+                    <div class="col-right">
+                        <input type='text' name='xred'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-left">
+                        <p>Green:</p>
+                    </div>
+                    <div class="col-right">
+                        <input type='text' name='xgreen'>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-left">
+                        <p>Blue:</p>
+                    </div>
+                    <div class="col-right">
+                        <input type='text' name='xblue'>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3>* All values must be between 1 and 255.</h3>
+                    <p>{{ xred }} - {{ xgreen }} - {{ xblue }}</p>
+                </div>
+                <div class="row">
+                        <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
