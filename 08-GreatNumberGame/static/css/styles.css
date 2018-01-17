@@ -1,0 +1,27 @@
+#container {
+    width: 600px;
+    height: 350px;
+    margin: 0px auto;
+    border-radius: 5px;
+    background-color:rgb(255,255,255);
+    padding: 20px;
+    text-align: center;
+}
+.redbox{
+    line-height: 100px;
+    width: 200px;
+    margin: 0px auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: red;
+    color: white;
+}
+.greenbox {
+    line-height: 100px;
+    width: 200px;
+    margin: 0px auto;
+    text-align: center;
+    vertical-align: middle;
+    background-color: Green;
+    color: white;
+}
