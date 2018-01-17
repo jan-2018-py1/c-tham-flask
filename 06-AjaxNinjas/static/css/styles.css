@@ -1,0 +1,24 @@
+/* * {
+    outline: 1px dotted red;
+} */
+#container {
+    width: 600px;
+    margin: 0px auto;
+}
+.col4 {
+    width: 145px;
+    display: inline-block;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+}
+img {
+    height: 200px;
+    display: block;
+    padding-bottom: 20px;
+    margin: 0px auto;
+}
+#custom {
+    text-align: center;
+}
