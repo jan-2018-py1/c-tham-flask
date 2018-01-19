@@ -5,50 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Flask - AJAX Ninjas</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="{{ url_for('static', filename='js/jquery.js') }}"></script> -->
+    <script type='text/javascript'>
+        $(document).ready(function(){
+            $("#enter").click(function(){
+                {% if colour == 'blue' %}
+                {%      set title = 'You chose Leonardo!' %}
+                {%      set image = 'img/leonardo.jpg' %}
+                {% elif colour == 'orange' %}
+                {%      set title = 'You chose Michelangelo!' %}
+                {%      set image = 'img/michelangelo.jpg' %}
+                {% elif colour == 'red' %}
+                {%      set title = 'You chose Raphael!' %}
+                {%      set image = 'img/raphael.jpg' %}
+                {% elif colour == 'purple': %}
+                {%      set title = 'You chose Donatello!' %}
+                {%      set image = 'img/donatello.jpg' %}
+                {% else %}
+                {%      set title = "There's no ninja in that color!" %}
+                {%      set image = 'img/notapril.jpg' %}
+                {% endif %}
+            })
+        });
+    </script>
 </head>
 <body>
     <div id="container">
         <div id="header">
-            {% if colour == 'blue' %}
-            {%      set title = 'You chose Leonardo!' %}
-            {%      set image = 'img/leonardo.jpg' %}
-            {% elif colour == 'orange' %}
-            {%      set title = 'You chose Michelangelo!' %}
-            {%      set image = 'img/michelangelo.jpg' %}
-            {% elif colour == 'red' %}
-            {%      set title = 'You chose Raphael!' %}
-            {%      set image = 'img/raphael.jpg' %}
-            {% elif colour == 'purple': %}
-            {%      set title = 'You chose Donatello!' %}
-            {%      set image = 'img/donatello.jpg' %}
-            {% else %}
-            {%      set title = "There's no ninja in that color!" %}
-            {%      set image = 'img/notapril.jpg' %}
-            {% endif %}
             <h1>{{ title }}</h1>
-            <!-- <img src="../static/img/donatello.jpg" alt=""> -->
             <img src="{{ url_for('static', filename=image) }}" alt="">
         </div>
         <div id="menu">
             <div class="col4">
-                <form action="/red" method="post">
-                    <button>RED</button>
+                <form action="/red" method="POST">
+                    <button id='red'>RED</button>
                 </form>
             </div>
             <div class="col4">
                 <form action="/blue" method="post">
-                    <button>BLUE</button>
+                    <button id='blue'>BLUE</button>
                 </form>
             </div>
             <div class="col4">
                 <form action="/orange" method="post">
-                    <button>ORANGE</button>
+                    <button id='orange'>ORANGE</button>
                 </form>
             </div>
             <div class="col4">
                 <form action="/purple" method="post">
-                    <button>PURPLE</button>
+                    <button id='purple'>PURPLE</button>
                 </form>
             </div>
         </div>
@@ -57,7 +64,7 @@
             <div>
                 <form action="/custom" method="post">
                     <input type='text' name='customColor'>
-                    <input type="submit" value="Enter">
+                    <input type="submit" value="Enter" id='enter'>
                 </form>
             </div>
         </div>
