@@ -10,25 +10,37 @@ def index():
     if "randomNum" not in session:
         session['randomNum'] = random.randrange(0,101)
         session['guessNum'] = 0
-    return render_template('index.html', randomNum=session['randomNum'])
+        session['statusAnswer'] = 0
+    return render_template('index.html')
 
 @app.route('/submit',methods=['POST'])
 def index_submit():
+    if "randomNum" not in session:
+        session['randomNum'] = random.randrange(0,101)
+        session['guessNum'] = 0
+        session['statusAnswer'] = 0
     print "submit"
     print request.form['guessNum']
+    if (request.form['guessNum']) == '':
+        return redirect('/')
     if (request.form['guessNum']) == str(session['randomNum']):
-        session['statusAnswer'] = str(session['randomNum'])+' was the number!'
+        session['statusAnswer'] = 3 # 'Correct Number'
     elif (request.form['guessNum']) > str(session['randomNum']):
-        session['statusAnswer'] = 'Too high!'
+        session['statusAnswer'] = 1 # 'Too high!'
     elif (request.form['guessNum']) < str(session['randomNum']):
-        session['statusAnswer'] = 'Too low!'
-    return render_template('index.html', statusAnswer=session['statusAnswer'])
+        session['statusAnswer'] = 2 # 'Too low!'
+    return redirect('/')
 
 @app.route('/playAgain',methods=['POST'])
 def index_playAgain():
+    if "randomNum" not in session:
+        session['randomNum'] = random.randrange(0,101)
+        session['guessNum'] = 0
+        session['statusAnswer'] = 0
     print "play again"
     session['randomNum'] = random.randrange(0,101)
     session['guessNum'] = 0
-    return render_template('index.html', randomNum=session['randomNum'])
+    session['statusAnswer'] = 0
+    return redirect('/')
 
 app.run(debug=True)
