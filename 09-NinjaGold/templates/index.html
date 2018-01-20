@@ -52,7 +52,11 @@
             <h2>Activities:</h2>
             <div id="activities">
                 {% for lines in session['activities'] %}
-                   <p>{{ lines }}</p>
+                    {% if lines[0:5] != 'Enter'%}
+                        <p class="colorGreen">{{ lines }}</p>
+                    {% else %}
+                        <p class="colorRed">{{ lines }}</p>
+                    {% endif %}
                 {% endfor%}
             </div>
         </div>
