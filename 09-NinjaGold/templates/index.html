@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flask - Ninja Gold</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div id="container">
+        <div id="top">
+            <h1>Your Gold: {{ session['gold'] }}</h1>
+        </div>
+        <div id="middle">
+            <div class="cols">
+                <h1>Farm</h1>
+                <h3>(earns 10-20 golds)</h3>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="farm" />
+                    <input type="submit" value="Find Gold!" id="farm">
+                </form>
+
+            </div>
+            <div class="cols">
+                <h1>Cave</h1>
+                <h3>(earns 5-10 golds)</h3>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="cave" />
+                    <input type="submit" value="Find Gold!" id="cave">
+                </form>
+            </div>
+            <div class="cols">
+                <h1>House</h1>
+                <h3>(earns 2-5 golds)</h3>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="house" />
+                    <input type="submit" value="Find Gold!" id="house">
+                </form>
+            </div>
+            <div class="cols">
+                <h1>Casino</h1>
+                <h3>(earns/takes 0-50 golds)</h3>
+                <form action="/process_money" method="post">
+                    <input type="hidden" name="building" value="casino" />
+                    <input type="submit" value="Find Gold!" id="casino">
+                </form>
+            </div>
+        </div>
+        <div id="bottom">
+            <h2>Activities:</h2>
+            <div id="activities">
+                {% for lines in session['activities'] %}
+                   <p>{{ lines }}</p>
+                {% endfor%}
+            </div>
+        </div>
+        <div id="reset">
+            <form action="/reset" method="post">
+                <input type="submit" value="Reset">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
