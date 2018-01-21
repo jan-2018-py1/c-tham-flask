@@ -35,6 +35,10 @@
     color: darkred;
     margin: 0px;
 }
+.error_hacker {
+    color: purple;
+    margin: 0px;
+}
 .pass {
     color: green;
     margin: 0px;

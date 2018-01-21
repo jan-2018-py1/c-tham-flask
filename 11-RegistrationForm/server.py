@@ -8,7 +8,10 @@ import re
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 NAME_REGEX = re.compile(r'^[a-zA-Z]')
 PASSWORD_REGEX = re.compile(r'^[A-Z].*\d|\d.*[A-Z]') 
+DOB_REGEX = re.compile(r'19|20[0-9]{2}-[0-9]{2}-[0-9]{2}')
 # A-Z, any char with 0 or more, digit  or  digit, any char with 0 or more, A-Z
+
+from datetime import datetime
 
 @app.route('/')
 def index():
@@ -18,12 +21,15 @@ def index():
 def process():
   print "** Got Post Info **"
   error = False
+  today = str(datetime.now())[:10]
+  print 'today is '+today
   email = request.form['email']
   firstname = request.form['firstname']
   lastname = request.form['lastname']
   password1 = request.form['password1']
   password2 = request.form['password2']
-  print email, firstname, lastname, password1, password2
+  dob = request.form['dob']
+  print '* ',email, firstname, lastname, password1, password2, dob
 #email
   if len(email) < 1:
     flash('** Your Email cannot be empty! **','error_empty')
@@ -48,7 +54,7 @@ def process():
 #password
   if len(password1) < 1:
     flash('** Your Password cannot be empty! **','error_empty')
-    error = True
+    error = True 
   elif len(password1) < 8:
     flash('** Your Password shoud be more than 8 characters **','error_invalid')
     error = True
@@ -69,10 +75,20 @@ def process():
   if password1 != password2:
     flash('** Password and password confirmation should match! **','error_invalid')
     error = True
+#date of birth
+  if len(dob) < 1:
+    flash('** Your date of birth cannot be empty! **','error_hacker')
+    error = True
+  elif not DOB_REGEX.match(dob):
+    flash('** Your date of birth is invalid! **','error_hacker')
+    error = True
+  elif str(dob) > today:
+    flash('** Your date of birth must be from the past! **','error_hacker')
+    error = True
 #others
   if error == False:
     flash('Thanks for submitting your information.','pass')
-    flash(str('('+email+') ('+firstname+') ('+lastname+') ('+password1+')  ('+password2+')'),'pass')
+    flash(str('('+email+') ('+firstname+') ('+lastname+') ('+password1+')  ('+password2+') ('+dob+')'),'pass')
   return redirect('/')
 
 app.run(debug=True)
