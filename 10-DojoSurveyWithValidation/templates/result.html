@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dojo Survey Submmited Info</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <div id="wrapper">
+        <form action='' method='get'>
+            <h1>Dojo Survey Submitted Info</h1>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="flash">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <div class="row">
+                <div class="col-left">
+                    Your Name:
+                </div>
+                <div class="col-right">
+                    <p>{{ name }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    Dojo Location:
+                </div>
+                <div class="col-right">
+                    <p>{{ location }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    Favorite Language:
+                </div>
+                <div class="col-right">
+                    <p>{{ language }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-left">
+                    Comments (optional):
+                </div>
+                <div class="col-right">
+                    <p class="comment">{{ comment }}</p>
+                </div>
+                <div class="row">
+                        <button>Go Back</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
